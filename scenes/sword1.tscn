@@ -1,0 +1,207 @@
+[gd_scene load_steps=19 format=3 uid="uid://dume07eyofvh4"]
+
+[ext_resource type="PackedScene" uid="uid://b2xclwxkp5p47" path="res://models/Sword1.glb" id="1_d4jxj"]
+[ext_resource type="Script" uid="uid://df0ts2oyddrqy" path="res://scenes/sword_1.gd" id="2_6y8nc"]
+[ext_resource type="Script" uid="uid://40plyum7lly" path="res://scenes/sword_1_animation_tree.gd" id="3_hbhvi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4jxj"]
+size = Vector3(0.0439453, 1.15228, 0.0236816)
+
+[sub_resource type="Animation" id="Animation_6y8nc"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.174533, 1.74533, -0.174533), Vector3(0.139626, 1.65806, -0.174533), Vector3(0.174533, 1.74533, -0.174533)]
+}
+
+[sub_resource type="Animation" id="Animation_hbhvi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.174533, 1.74533, -0.174533)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_22tfn"]
+resource_name = "walk'"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sboqf"]
+resource_name = "close"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.174533, 1.74533, -0.174533), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eqsip"]
+resource_name = "far"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.2), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0.174533, 1.74533, -0.174533)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbhvi"]
+_data = {
+&"RESET": SubResource("Animation_hbhvi"),
+&"close": SubResource("Animation_sboqf"),
+&"far": SubResource("Animation_eqsip"),
+&"idle": SubResource("Animation_6y8nc"),
+&"walk": SubResource("Animation_22tfn")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22tfn"]
+animation = &"close"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sboqf"]
+animation = &"far"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6y8nc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6y8nc"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state == IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoiw6"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state == FAR"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jldkh"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state == IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sboqf"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "state == CLOSE"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_22tfn"]
+states/Start/position = Vector2(369, 177)
+states/close/node = SubResource("AnimationNodeAnimation_22tfn")
+states/close/position = Vector2(625, 100)
+states/far/node = SubResource("AnimationNodeAnimation_sboqf")
+states/far/position = Vector2(445, 105)
+states/idle/node = SubResource("AnimationNodeAnimation_6y8nc")
+states/idle/position = Vector2(532, 216)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6y8nc"), "close", "far", SubResource("AnimationNodeStateMachineTransition_uoiw6"), "far", "idle", SubResource("AnimationNodeStateMachineTransition_jldkh"), "idle", "close", SubResource("AnimationNodeStateMachineTransition_sboqf")]
+graph_offset = Vector2(-43, 59)
+
+[node name="Sword1" instance=ExtResource("1_d4jxj")]
+transform = Transform3D(-0.200706, 0.138258, 0.969846, -0.17101, 0.969846, -0.173648, -0.96461, -0.200706, -0.17101, 0, 0, 0)
+script = ExtResource("2_6y8nc")
+
+[node name="Sword1" parent="." index="0"]
+layers = 2
+cast_shadow = 0
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423027, 0)
+shape = SubResource("BoxShape3D_d4jxj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_hbhvi")
+}
+
+[node name="Sword1AnimationTree" type="AnimationTree" parent="." index="3"]
+tree_root = SubResource("AnimationNodeStateMachine_22tfn")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("3_hbhvi")
+
+[connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
+[connection signal="area_shape_exited" from="Area3D" to="." method="_on_area_3d_area_shape_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

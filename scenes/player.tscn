@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3pr4lrkt200m"]
+[gd_scene load_steps=5 format=3 uid="uid://c3pr4lrkt200m"]
 
 [ext_resource type="Script" uid="uid://bu6cqtv3gu138" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cjitob1ji0lyy" path="res://scenes/camera.gd" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://dume07eyofvh4" path="res://scenes/sword1.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+near = 0.01
 script = ExtResource("2_g2els")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="WeaponHolder" type="Node3D" parent="MainCamera"]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0858316, 0.98106, -0.173648, -0.0151344, 0.172987, 0.984808, 0.325266, -0.297228, -0.726612)
+
+[node name="Sword1" parent="MainCamera/WeaponHolder" instance=ExtResource("3_qhqgy")]
+transform = Transform3D(-0.200706, 0.138258, 0.969846, -0.17101, 0.969846, -0.173648, -0.96461, -0.200706, -0.17101, 0, 0, 0)
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_u8vuu")

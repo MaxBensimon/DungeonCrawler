@@ -17,7 +17,7 @@ var brake_length = 10
 #var has_landed: bool = false
 
 func _ready() -> void:
-	camera = $Camera
+	camera = $MainCamera
 	#anim = $Camera/AnimationPlayer
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -68,3 +68,9 @@ func _physics_process(delta: float) -> void:
 		#velocity.z = lerp(velocity.z, target_velocity.z, delta * air_control_factor)
 	
 	move_and_slide()
+	
+	#if velocity.length() > .1:
+		#$MainCamera/WeaponHolder/Sword1/Sword1AnimationTree.change_state_walk()
+	#else:
+		#$MainCamera/WeaponHolder/Sword1/Sword1AnimationTree.change_state_idle()
+	
