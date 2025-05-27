@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3pr4lrkt200m"]
+[gd_scene load_steps=6 format=3 uid="uid://c3pr4lrkt200m"]
 
-[ext_resource type="Script" uid="uid://bu6cqtv3gu138" path="res://scenes/player.gd" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://cjitob1ji0lyy" path="res://scenes/camera.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bu6cqtv3gu138" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cjitob1ji0lyy" path="res://scripts/camera.gd" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dume07eyofvh4" path="res://scenes/sword1.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bvac4mqclqvsg" path="res://scripts/weapon_ray_cast_3d.gd" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -18,7 +19,16 @@ script = ExtResource("2_g2els")
 transform = Transform3D(0.996195, 0.0871557, 0, -0.0858316, 0.98106, -0.173648, -0.0151344, 0.172987, 0.984808, 0.325266, -0.297228, -0.726612)
 
 [node name="Sword1" parent="MainCamera/WeaponHolder" instance=ExtResource("3_qhqgy")]
-transform = Transform3D(-0.200706, 0.138258, 0.969846, -0.17101, 0.969846, -0.173648, -0.96461, -0.200706, -0.17101, 0, 0, 0)
+transform = Transform3D(-0.200706, 0.138258, 0.969846, -0.17101, 0.969846, -0.173648, -0.964609, -0.200706, -0.171011, 0, 0, 0)
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="WeaponRayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.398, -0.146)
+target_position = Vector3(0, 0.75, 0)
+script = ExtResource("4_dqkch")
+
+[connection signal="weapon_attack" from="WeaponRayCast3D" to="MainCamera/WeaponHolder/Sword1" method="_on_weapon_ray_cast_3d_weapon_attack"]
+[connection signal="weapon_close" from="WeaponRayCast3D" to="MainCamera/WeaponHolder/Sword1" method="_on_weapon_ray_cast_3d_weapon_close"]
+[connection signal="weapon_far" from="WeaponRayCast3D" to="MainCamera/WeaponHolder/Sword1" method="_on_weapon_ray_cast_3d_weapon_far"]

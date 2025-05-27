@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://8llffejygsjf"]
+[gd_scene load_steps=6 format=3 uid="uid://8llffejygsjf"]
 
 [ext_resource type="PackedScene" uid="uid://c3pr4lrkt200m" path="res://scenes/player.tscn" id="1_2q6dc"]
+[ext_resource type="Material" uid="uid://b0psl5h1osdom" path="res://materials/placeholder_mat.tres" id="1_w7c3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -26,30 +27,41 @@ shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+[node name="CSGBox3D_floor" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("1_w7c3h")
 use_collision = true
-size = Vector3(20, 0.5, 20)
+size = Vector3(20, 1, 20)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -8.647)
+[node name="CSGBox3D6_wall1" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -7.5)
+material_override = ExtResource("1_w7c3h")
 use_collision = true
-size = Vector3(0.5, 3, 0.5)
+size = Vector3(6, 3, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2375, 1.5, -8.647)
-use_collision = true
-size = Vector3(0.5, 3, 0.5)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9875, 1.5, -8.647)
+[node name="CSGBox3D2_pillar1" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -7.5)
+material_override = ExtResource("1_w7c3h")
 use_collision = true
 size = Vector3(0.5, 3, 0.5)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6125, 1.5, -8.647)
+[node name="CSGBox3D3_pillar2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -7.5)
+material_override = ExtResource("1_w7c3h")
+use_collision = true
+size = Vector3(0.5, 3, 0.5)
+
+[node name="CSGBox3D4_pillar3" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, -7.5)
+material_override = ExtResource("1_w7c3h")
+use_collision = true
+size = Vector3(0.5, 3, 0.5)
+
+[node name="CSGBox3D5_pillar4" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.5, -7.5)
+material_override = ExtResource("1_w7c3h")
 use_collision = true
 size = Vector3(0.5, 3, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13851, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60341, 0)

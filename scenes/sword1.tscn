@@ -1,29 +1,41 @@
-[gd_scene load_steps=19 format=3 uid="uid://dume07eyofvh4"]
+[gd_scene load_steps=28 format=4 uid="uid://dume07eyofvh4"]
 
 [ext_resource type="PackedScene" uid="uid://b2xclwxkp5p47" path="res://models/Sword1.glb" id="1_d4jxj"]
-[ext_resource type="Script" uid="uid://df0ts2oyddrqy" path="res://scenes/sword_1.gd" id="2_6y8nc"]
-[ext_resource type="Script" uid="uid://40plyum7lly" path="res://scenes/sword_1_animation_tree.gd" id="3_hbhvi"]
+[ext_resource type="Script" uid="uid://df0ts2oyddrqy" path="res://scripts/sword_1.gd" id="2_6y8nc"]
+[ext_resource type="Shader" uid="uid://7xep837dbe7e" path="res://scripts/clipping.gdshader" id="3_22tfn"]
+[ext_resource type="Script" uid="uid://40plyum7lly" path="res://scripts/sword_1_animation_tree.gd" id="3_hbhvi"]
+[ext_resource type="AudioStream" uid="uid://cpob3v7th02t3" path="res://sounds/SwordSwing1.mp3" id="5_eqsip"]
+[ext_resource type="AudioStream" uid="uid://c5vrbe2f0undp" path="res://sounds/MetalClang.mp3" id="6_eqsip"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_d4jxj"]
-size = Vector3(0.0439453, 1.15228, 0.0236816)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoiw6"]
+render_priority = 0
+shader = ExtResource("3_22tfn")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/roughness_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/normal_scale = 0.5
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
-[sub_resource type="Animation" id="Animation_6y8nc"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.174533, 1.74533, -0.174533), Vector3(0.139626, 1.65806, -0.174533), Vector3(0.174533, 1.74533, -0.174533)]
-}
+[sub_resource type="ArrayMesh" id="ArrayMesh_gd7o8"]
+resource_name = "Sword1_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.112382, -0.39783, -0.025, 0.224764, 1.39797, 0.05),
+"attribute_data": PackedByteArray("/5//f/9//z//n/8//3//f/9v/3//f/9//38ym/9vMpv/b/+f/3//n/+PMpv/j/+f/58ym/+f/5//b/9//3//P/9//3//b/8/Mrv/f/+//z//v/9//4/MJP+f/x//n8wk/4//H/9/zCT/f/8f/2/MJP9v/x//b/8//3//P/9f/5/0bjKb9G7/n/9fMpuYrf9/mK3/PzK7/z//n/9//5//P/8//3/MRP8/zET/f/8//z//X/9/9G7/P/Ru/3//X/8//1/MJPRu/x/0bswk/1//H8xE/3//X/8//1//f8xE/z//b/9//38ym/9//3//bzKb/2//n/9//5//jzKb/4//n/+fMpv/n/+f/1//f/9f/z/MRP8/zET/f/9v/3//f/8//2//P/9//38yu/9//7//f/+//z//j8wk/5//H/+P/x//n8wk/3/MJP9//x//b8wk/2//H/9v/z//f/8//1/MJPRuzCT0bv8f/1//H/9f/5/0bv+f9G4ym/9fMpuYrf9/Mrv/P5it/z//n/9//5//P/8//3/MRP8//z//P8xE/3//X/9/9G7/P/9f/z/0bv9//3//f/+f/z//f/8//5//f6CY/3+gmP8//2/ulP9/7pTxW/9/8Vv/P/+PzCRxY/9/cWP/P7lszCS5bP8fuWz/n7lsMpv/bxAr/3/MJP9/ECv/b8wkmK3/f5it/z//jzKb/38QK/9vECtxY/8/cWP/f/9vMpv/f+6U/38ym/9v7pSgmP8/oJj/f7lsMpu5bP+fuWz/H7lszCTxW/8/8Vv/f/9/zCT/f/8f/38ym/9//5+gmP9/oJj/P/9v7pT/f+6U8Vv/f/Fb/z//b8wk/3//H/9/zCRxY/9/cWP/P7lszCS5bP8fuWz/n7lsMpv/bxAr/3/MJP9/ECv/fzKb/28ym/9//5+Yrf8/mK3/f/9/ECv/bxArcWP/P3Fj/3//f+6U/2/ulP9/MpugmP8/oJj/f7lsMpu5bP+fuWz/H7lszCTxW/8/8Vv/f/+PzCT/jzKb"),
+"format": 34896613399,
+"index_count": 276,
+"index_data": PackedByteArray("cAACAAAAcABxAAIAcgAFAHMAcgAEAAUAdAA1ADYAdAB1ADUADgAPABAADgARAA8AEgATABQAdgAWABcAdgAYABYAGwAaABkAGwAcABoAdwAtAC4AdwB4AC0AeQAxADIAeQB6ADEAewAgACEAewB8ACAAfQB+AH8AfQCAAH4AgQCCACUAKAApACoAKAArACkACAAGAAkACAAHAAYACwAMAA0ACwCDAAwAJgAkACMAJgAnACQAHQCEAB4AHQCFAIQALACGAIcALAAvAIYAiACJAIoAiACLAIkAAwCMAI0AAwABAIwAHwCOAI8AHwAiAI4AMACQAJEAMAAzAJAANACSAJMANAA3AJIAlACVABUAlgAKAJcAmABtAJkAmABvAG0AmgA6ADgAmgCbADoAnABDAJ0AnABCAEMARgBHAEgARgBJAEcASgBLAEwATQBOAE8ATQBQAE4AngCfAFQAngCgAJ8AoQBpAKIAoQBrAGkAowBZAKQAowBYAFkApQBdAKYApQBcAF0ApwCoAFMApwCpAKgAXwBgAGEAZABlAGYAZABnAGUAPACqAKsAPACsAKoAPwBAAD4APwBBAEAAYgCtAGMAYgCuAK0AVQCvALAAVQBWAK8AaACxAGoAaACyALEAOwCzALQAOwC1ALMAbAC2AG4AbAC3ALYAWwC4AF4AWwC5ALgAVwC6AFoAVwC7ALoARQC8AEQARQC9ALwAUQC+AFIAOQA9AL8A"),
+"lods": [0.029881, PackedByteArray("AAABAAIAAwABAAAABAAFAAYABwAEAAYACAAHAAYACAAGAAkABgAKAAkACwAKAAwACwAMAA0ADgAPABAADgARAA8AEgATABQAFQAWABcAFQAYABYAGQAaABUAGwAaABkAGwAcABoAHQAbABkAHQAZAB4AHwAgACEAHwAiACAAIwAkACUAJgAkACMAJgAnACQAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOwA5ADgAPAA5ADsAPAA9ADkAOQA9AD4APwBAAD4APwBBAEAAQgBDAEQARQBCAEQARgBHAEgARgBJAEcASgBLAEwATQBOAE8ATQBQAE4AUQBNAFIAUwBRAFIAUwBSAFQAVQBRAFMAVQBWAFEAVwBYAFkAVwBZAFoAWwBcAF0AWwBdAF4AXwBgAGEAYgBfAGEAYgBhAGMAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0A")],
+"material": SubResource("ShaderMaterial_uoiw6"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 192,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
 
 [sub_resource type="Animation" id="Animation_hbhvi"]
 length = 0.001
@@ -51,23 +63,58 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword1:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_22tfn"]
-resource_name = "walk'"
-length = 0.6
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_uoiw6"]
+resource_name = "attack"
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("Sword1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.66, -0.313, -0.292), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.244346, -1.5708), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_sboqf"]
@@ -128,14 +175,54 @@ tracks/1/keys = {
 "values": [Vector3(0, 3.14159, 0), Vector3(0.174533, 1.74533, -0.174533)]
 }
 
+[sub_resource type="Animation" id="Animation_6y8nc"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.174533, 1.74533, -0.174533), Vector3(0.139626, 1.65806, -0.174533), Vector3(0.174533, 1.74533, -0.174533)]
+}
+
+[sub_resource type="Animation" id="Animation_22tfn"]
+resource_name = "walk'"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hbhvi"]
 _data = {
 &"RESET": SubResource("Animation_hbhvi"),
+&"attack": SubResource("Animation_uoiw6"),
 &"close": SubResource("Animation_sboqf"),
 &"far": SubResource("Animation_eqsip"),
 &"idle": SubResource("Animation_6y8nc"),
 &"walk": SubResource("Animation_22tfn")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eqsip"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22tfn"]
 animation = &"close"
@@ -145,16 +232,6 @@ animation = &"far"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6y8nc"]
 animation = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6y8nc"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "state == IDLE"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoiw6"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "state == FAR"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jldkh"]
 xfade_time = 0.1
@@ -166,42 +243,64 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "state == CLOSE"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbhvi"]
+advance_mode = 2
+advance_expression = "state == FAR"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22tfn"]
+advance_mode = 2
+advance_expression = "state == IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoiw6"]
+advance_mode = 2
+advance_expression = "state == ATTACK"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gd7o8"]
+advance_mode = 2
+advance_expression = "state == IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eqsip"]
+advance_mode = 2
+advance_expression = "state == CLOSE"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_22tfn"]
 states/Start/position = Vector2(369, 177)
+states/attack/node = SubResource("AnimationNodeAnimation_eqsip")
+states/attack/position = Vector2(573, 177)
 states/close/node = SubResource("AnimationNodeAnimation_22tfn")
-states/close/position = Vector2(625, 100)
+states/close/position = Vector2(740, 105)
 states/far/node = SubResource("AnimationNodeAnimation_sboqf")
 states/far/position = Vector2(445, 105)
 states/idle/node = SubResource("AnimationNodeAnimation_6y8nc")
-states/idle/position = Vector2(532, 216)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6y8nc"), "close", "far", SubResource("AnimationNodeStateMachineTransition_uoiw6"), "far", "idle", SubResource("AnimationNodeStateMachineTransition_jldkh"), "idle", "close", SubResource("AnimationNodeStateMachineTransition_sboqf")]
+states/idle/position = Vector2(541, 381)
+transitions = ["far", "idle", SubResource("AnimationNodeStateMachineTransition_jldkh"), "idle", "close", SubResource("AnimationNodeStateMachineTransition_sboqf"), "close", "far", SubResource("AnimationNodeStateMachineTransition_hbhvi"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_22tfn"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_uoiw6"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_gd7o8"), "attack", "close", SubResource("AnimationNodeStateMachineTransition_eqsip")]
 graph_offset = Vector2(-43, 59)
 
 [node name="Sword1" instance=ExtResource("1_d4jxj")]
-transform = Transform3D(-0.200706, 0.138258, 0.969846, -0.17101, 0.969846, -0.173648, -0.96461, -0.200706, -0.17101, 0, 0, 0)
+transform = Transform3D(-0.200706, 0.138258, 0.969845, -0.17101, 0.969845, -0.173648, -0.964609, -0.200706, -0.171011, 0, 0, 0)
 script = ExtResource("2_6y8nc")
 
 [node name="Sword1" parent="." index="0"]
 layers = 2
 cast_shadow = 0
+mesh = SubResource("ArrayMesh_gd7o8")
 
-[node name="Area3D" type="Area3D" parent="." index="1"]
+[node name="Sword1HitRayCast3D" type="RayCast3D" parent="Sword1" index="0"]
+transform = Transform3D(1, -1.49012e-08, 0, -1.49012e-08, -1, -8.56817e-08, 2.98023e-08, 9.68575e-08, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423027, 0)
-shape = SubResource("BoxShape3D_d4jxj")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 &"": SubResource("AnimationLibrary_hbhvi")
 }
 
-[node name="Sword1AnimationTree" type="AnimationTree" parent="." index="3"]
+[node name="Sword1AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_22tfn")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_hbhvi")
 
-[connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
-[connection signal="area_shape_exited" from="Area3D" to="." method="_on_area_3d_area_shape_exited"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[node name="SwordSwingAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("5_eqsip")
+
+[node name="SwordHitAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("6_eqsip")
+volume_db = -23.0
